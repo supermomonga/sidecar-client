@@ -1,0 +1,20 @@
+
+## What is this?
+
+Sidecar is the small program to display image.
+You can use Sidecar to extend image display feature to your software.
+
+## Features
+
+* Easy to use
+  * Only you need to do is run Sidecar with ARGV which is file path you want to display.
+* Single application
+  * Sidecar is single application, so you can't run multiple instance of Sidecar. It means that you need not to think about completated instanse managing from your software.
+* Don't take focus
+  * Sidecar will not take the window focus from your software.
+* Be the "Sidecar"
+  * Sidecar knows the best position to be. He automatically adjust the window position and size himself.
+
+## Thanks for
+* osyo-manga
+  * Lot of C++ advise and support for me.
