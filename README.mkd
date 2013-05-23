@@ -15,6 +15,6 @@ You can use Sidecar to extend image display feature to your software.
 * Be the "Sidecar"
   * Sidecar knows the best position to be. He automatically adjust the window position and size himself.
 
-## Thanks for
-* osyo-manga
+## Special Thanks
+* [osyo-manga](https://github.com/osyo-manga/)
   * Lot of C++ advise and support for me.
