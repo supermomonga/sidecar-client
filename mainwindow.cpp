@@ -9,9 +9,9 @@
 #include <QDir>
 #include <QLabel>
 #include <QRegExp>
-#include <QtWebKitWidgets/QWebView>
-#include <QtWebKitWidgets/QWebPage>
-#include <QtWebKitWidgets/QWebFrame>
+#include <QWebView>
+#include <QWebPage>
+#include <QWebFrame>
 #include <QSize>
 #include <QFile>
 #include <QIODevice>
@@ -49,8 +49,6 @@ void MainWindow::browserInitialize()
                                               "<style>" + css.readAll() + "</style>"
                                               "<title></title></head>"
                                               "<body><div id=\"wrapper\">"
-                                              "<span id=\"width\">300</span>"
-                                              "<span id=\"height\">400</span>"
                                               "<div id=\"multipleImages\"></div>"
                                               "</div></body></html>");
 
