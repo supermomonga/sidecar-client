@@ -41,8 +41,8 @@ void MainWindow::clearImages(int n)
 void MainWindow::setImage(QString path)
 {
     QLabel *label = new QLabel();
-    QRegExp remoteImage("https?.+(jpg|jpeg|gif|png)");
-    if(remoteImage.indexIn(path) > 0)
+    QRegExp remoteImage("^https?.+(jpg|jpeg|gif|png)$");
+    if(remoteImage.indexIn(path) != -1)
     {
         QString html = "test:<img src=\"" + path + "\"/>";
         qDebug() << html;
