@@ -21,9 +21,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setImage(QString path)
+void MainWindow::addImage(QString path)
 {
-    QLabel *label = new QLabel(ui->widgetImages);
+    QLabel *label = new QLabel();
     QImage image(QFileInfo(path).absoluteFilePath());
     if(image.isNull()){
         label->setText("そんな画像ないよ");
@@ -34,5 +34,16 @@ void MainWindow::setImage(QString path)
         label->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
         label->setScaledContents(false);
         label->adjustSize();
+    }
+    ui->verticalLayout_2->addWidget(label);
+    label->show();
+}
+
+void MainWindow::clearImages()
+{
+    while (!ui->verticalLayout_2->isEmpty()) {
+        QWidget* w = ui->verticalLayout_2->takeAt(0)->widget();
+        w->setVisible(false);
+        delete w;
     }
 }
