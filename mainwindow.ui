@@ -17,15 +17,7 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QWidget" name="widgetImages" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <layout class="QVBoxLayout" name="verticalLayout_2"/>
      </widget>
     </item>
    </layout>
