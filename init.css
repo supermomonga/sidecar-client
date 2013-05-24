@@ -1,0 +1,5 @@
+body{background:transparent}
+
+#multipleImages img{
+  display: block;
+}

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <sourcewidget.h>
 
 namespace Ui {
 class MainWindow;
@@ -16,8 +17,20 @@ public:
     ~MainWindow();
     void clearImages();
     void clearImages(int n);
-    void setImage(QString path);
+    void addImage(QString path);
+    void browserInitialize();
+    void updateSource();
+    void executeJavascript(QString js);
+    void adjunstPosition();
+    SourceWidget source_widget;
     
+private slots:
+    void on_pushButtonShowHTML_clicked();
+
+    void on_webView_loadFinished(bool arg1);
+
+    void on_pushButtonQuit_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

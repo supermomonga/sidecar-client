@@ -6,18 +6,25 @@
 
 QT       += core gui webkitwidgets
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+#greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Sidecar
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    sourcewidget.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    sourcewidget.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    sourcewidget.ui
 
 OTHER_FILES += \
-    README.mkd
+    README.mkd \
+    init.css
+
+RESOURCES += \
+    web.qrc

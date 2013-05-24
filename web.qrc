@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/js">
+        <file>jquery-1.9.1.min.js</file>
+    </qresource>
+    <qresource prefix="/css">
+        <file>init.css</file>
+    </qresource>
+</RCC>

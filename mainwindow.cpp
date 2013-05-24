@@ -9,13 +9,24 @@
 #include <QDir>
 #include <QLabel>
 #include <QRegExp>
-#include <QWebView>
+#include <QtWebKitWidgets/QWebView>
+#include <QtWebKitWidgets/QWebPage>
+#include <QtWebKitWidgets/QWebFrame>
+#include <QSize>
+#include <QFile>
+#include <QIODevice>
+#include <QUrl>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //setStyleSheet("background:transparent;");
+    //setAttribute(Qt::WA_TranslucentBackground);
+    setWindowFlags(Qt::FramelessWindowHint);
+    adjunstPosition();
+    browserInitialize();
 }
 
 MainWindow::~MainWindow()
@@ -23,46 +34,66 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::adjunstPosition()
+{
+    move(30,30);
+}
+
+void MainWindow::browserInitialize()
+{
+    QFile css;
+    css.setFileName(":/css/init.css");
+    css.open(QIODevice::ReadOnly);
+    ui->webView->page()->mainFrame()->setHtml("<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"utf-8\"><style>" + css.readAll() + "</style><title></title></head><body><div id=\"multipleImages\"></div></body></html>");
+
+    QFile jQuery;
+    jQuery.setFileName(":/js/jquery-1.9.1.min.js");
+    jQuery.open(QIODevice::ReadOnly);
+    ui->webView->page()->mainFrame()->evaluateJavaScript(jQuery.readAll());
+}
+
 void MainWindow::clearImages()
 {
-    clearImages(ui->verticalLayoutImages->count());
+    //clearImages(ui->verticalLayoutImages->count());
 }
 
 void MainWindow::clearImages(int n)
 {
-    int i = 0;
-    while (!ui->verticalLayoutImages->isEmpty() && i < n) {
-        QWidget* w = ui->verticalLayoutImages->takeAt(0)->widget();
-        w->setVisible(false);
-        delete w;
-        i++;
-    }
+
 }
 
-void MainWindow::setImage(QString path)
+void MainWindow::addImage(QString path)
 {
     QRegExp remoteImage("^https?.+(jpg|jpeg|gif|png)$");
-    if(remoteImage.indexIn(path) != -1)
-    {
-        QString html = "test:<img src=\"" + path + "\"/>";
-        QWebView *webview = new QWebView();
-        webview->setHtml(html);
-        ui->verticalLayoutImages->addWidget(webview);
-        webview->show();
-    }else {
-        QLabel *label = new QLabel();
-        QImage image(QFileInfo(path).absoluteFilePath());
-        if(image.isNull()){
-            label->setText("そんな画像ないよ");
-        }else{
-            label->setBackgroundRole(QPalette::Base);
-            QPixmap pm = QPixmap::fromImage(image);
-            label->setPixmap(pm);
-            label->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-            label->setScaledContents(false);
-            label->adjustSize();
-        }
-        ui->verticalLayoutImages->addWidget(label);
-        label->show();
+    if(remoteImage.indexIn(path) == -1) {
+        path = "file://" + path;
     }
+    executeJavascript("$('#multipleImages').append('<img src=\"" + path + "\" />');");
+}
+
+void MainWindow::executeJavascript(QString js)
+{
+    ui->webView->page()->mainFrame()->evaluateJavaScript(js);
+    updateSource();
+}
+
+void MainWindow::on_pushButtonShowHTML_clicked()
+{
+    this->source_widget.show();
+    updateSource();
+}
+
+void MainWindow::on_webView_loadFinished(bool arg1)
+{
+    updateSource();
+}
+
+void MainWindow::updateSource()
+{
+    this->source_widget.setHtml(ui->webView->page()->currentFrame()->toHtml());
+}
+
+void MainWindow::on_pushButtonQuit_clicked()
+{
+    QApplication::quit();
 }

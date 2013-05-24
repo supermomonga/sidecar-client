@@ -15,13 +15,13 @@ int main(int argc, char *argv[])
         QStringList args = a.arguments();
         QStringList::const_iterator iter;
         for (iter = ++args.constBegin(); iter != args.constEnd();++iter){
-            w.setImage(*iter);
+            w.addImage(*iter);
         }
     }
 #define DEBUG
 #ifdef DEBUG
-    w.setImage("/Users/momonga/Desktop/uji.jpg");
-    w.setImage("https://dl.dropboxusercontent.com/u/330501/Screenshots/vim.png");
+    w.addImage("/Users/momonga/Desktop/uji.jpg");
+    w.addImage("https://dl.dropboxusercontent.com/u/330501/Screenshots/vim.png");
 #endif
 
     return a.exec();
