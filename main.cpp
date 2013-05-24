@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
     }
     w.setImage("/Users/momonga/Desktop/uji.jpg");
     w.setImage("/Users/momonga/Desktop/zimbu.jpg");
+    w.setImage("/Users/momonga/Desktop/uji.jpg");
 
     return a.exec();
 }

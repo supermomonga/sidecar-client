@@ -17,7 +17,8 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QWidget" name="widgetImages" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout_2"/>
+      <layout class="QVBoxLayout" name="verticalLayoutImages">
+      </layout>
      </widget>
     </item>
    </layout>
