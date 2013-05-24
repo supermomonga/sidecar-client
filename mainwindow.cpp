@@ -9,6 +9,7 @@
 #include <QDir>
 #include <QLabel>
 #include <QRegExp>
+#include <QWebView>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -40,15 +41,16 @@ void MainWindow::clearImages(int n)
 
 void MainWindow::setImage(QString path)
 {
-    QLabel *label = new QLabel();
     QRegExp remoteImage("^https?.+(jpg|jpeg|gif|png)$");
     if(remoteImage.indexIn(path) != -1)
     {
         QString html = "test:<img src=\"" + path + "\"/>";
-        qDebug() << html;
-        label->setTextFormat(Qt::RichText);
-        label->setText(html);
+        QWebView *webview = new QWebView();
+        webview->setHtml(html);
+        ui->verticalLayoutImages->addWidget(webview);
+        webview->show();
     }else {
+        QLabel *label = new QLabel();
         QImage image(QFileInfo(path).absoluteFilePath());
         if(image.isNull()){
             label->setText("そんな画像ないよ");
@@ -60,7 +62,7 @@ void MainWindow::setImage(QString path)
             label->setScaledContents(false);
             label->adjustSize();
         }
+        ui->verticalLayoutImages->addWidget(label);
+        label->show();
     }
-    ui->verticalLayoutImages->addWidget(label);
-    label->show();
 }
