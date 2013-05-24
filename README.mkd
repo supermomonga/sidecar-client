@@ -1,7 +1,7 @@
 ## What is this?
 
-Sidecar is the small program to display image.
-You can use Sidecar to extend image display feature to your software.
+Sidecar is a program to display image.
+You can embed image display feature into your software with Sidecar.
 
 ## Features
 
