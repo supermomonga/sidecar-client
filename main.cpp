@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
     w.setImage("/Users/momonga/Desktop/uji.jpg");
     w.setImage("/Users/momonga/Desktop/zimbu.jpg");
     w.setImage("/Users/momonga/Desktop/uji.jpg");
+    w.setImage("https://dl.dropboxusercontent.com/u/330501/Screenshots/vim.png");
 
     return a.exec();
 }
