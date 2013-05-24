@@ -1,5 +1,13 @@
-body{background:transparent}
+body, html{
+width: auto;
+height: auto;
+}
 
 #multipleImages img{
   display: block;
+}
+
+#width, #height{
+  display: block;
+  display: none;
 }

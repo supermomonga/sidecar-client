@@ -21,7 +21,8 @@ public:
     void browserInitialize();
     void updateSource();
     void executeJavascript(QString js);
-    void adjunstPosition();
+    void adjustPosition();
+    void setWebviewSize();
     SourceWidget source_widget;
     
 private slots:
@@ -29,7 +30,7 @@ private slots:
 
     void on_webView_loadFinished(bool arg1);
 
-    void on_pushButtonQuit_clicked();
+    void adjustWindowSize(QSize);
 
 private:
     Ui::MainWindow *ui;

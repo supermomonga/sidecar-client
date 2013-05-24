@@ -22,10 +22,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(ui->webView->page()->mainFrame(), SIGNAL(contentsSizeChanged(QSize)), this, SLOT(adjustWindowSize(QSize)));
     //setStyleSheet("background:transparent;");
     //setAttribute(Qt::WA_TranslucentBackground);
     setWindowFlags(Qt::FramelessWindowHint);
-    adjunstPosition();
+    adjustPosition();
     browserInitialize();
 }
 
@@ -34,7 +35,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::adjunstPosition()
+void MainWindow::adjustPosition()
 {
     move(30,30);
 }
@@ -44,7 +45,14 @@ void MainWindow::browserInitialize()
     QFile css;
     css.setFileName(":/css/init.css");
     css.open(QIODevice::ReadOnly);
-    ui->webView->page()->mainFrame()->setHtml("<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"utf-8\"><style>" + css.readAll() + "</style><title></title></head><body><div id=\"multipleImages\"></div></body></html>");
+    ui->webView->page()->mainFrame()->setHtml("<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"utf-8\">"
+                                              "<style>" + css.readAll() + "</style>"
+                                              "<title></title></head>"
+                                              "<body><div id=\"wrapper\">"
+                                              "<span id=\"width\">300</span>"
+                                              "<span id=\"height\">400</span>"
+                                              "<div id=\"multipleImages\"></div>"
+                                              "</div></body></html>");
 
     QFile jQuery;
     jQuery.setFileName(":/js/jquery-1.9.1.min.js");
@@ -71,6 +79,12 @@ void MainWindow::addImage(QString path)
     executeJavascript("$('#multipleImages').append('<img src=\"" + path + "\" />');");
 }
 
+void MainWindow::adjustWindowSize(QSize size)
+{
+    ui->webView->setMinimumSize(size);
+    ui->webView->setMaximumSize(size);
+}
+
 void MainWindow::executeJavascript(QString js)
 {
     ui->webView->page()->mainFrame()->evaluateJavaScript(js);
@@ -86,14 +100,10 @@ void MainWindow::on_pushButtonShowHTML_clicked()
 void MainWindow::on_webView_loadFinished(bool arg1)
 {
     updateSource();
+    qDebug() << "load Finished";
 }
 
 void MainWindow::updateSource()
 {
     this->source_widget.setHtml(ui->webView->page()->currentFrame()->toHtml());
-}
-
-void MainWindow::on_pushButtonQuit_clicked()
-{
-    QApplication::quit();
 }

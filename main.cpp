@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 #ifdef DEBUG
     w.addImage("/Users/momonga/Desktop/uji.jpg");
     w.addImage("https://dl.dropboxusercontent.com/u/330501/Screenshots/vim.png");
+    w.addImage("/Users/momonga/Desktop/zimbu.jpg");
 #endif
 
     return a.exec();
