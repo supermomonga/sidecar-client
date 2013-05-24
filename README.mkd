@@ -15,5 +15,6 @@ You can embed image display feature into your software with Sidecar.
   * Sidecar knows the best position to be. He automatically adjust the window position and size himself.
 
 ## Special Thanks
+They gave me a lots of C++ advise and support.
 * [osyo-manga](https://github.com/osyo-manga/)
-  * Lots of C++ advise and support for me.
+* [mattn](https://github.com/mattn/)
