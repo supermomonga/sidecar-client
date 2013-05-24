@@ -14,7 +14,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void setImage(QString path);
+    void addImage(QString path);
+    void clearImages();
     
 private:
     Ui::MainWindow *ui;
