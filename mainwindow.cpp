@@ -7,6 +7,7 @@
 #include <QSizePolicy>
 #include <QFileInfo>
 #include <QDir>
+#include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,15 +23,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::setImage(QString path)
 {
+    QLabel *label = new QLabel(ui->widgetImages);
     QImage image(QFileInfo(path).absoluteFilePath());
     if(image.isNull()){
-        ui->label->setText("そんな画像ないよ");
+        label->setText("そんな画像ないよ");
     }else{
-        ui->label->setBackgroundRole(QPalette::Base);
+        label->setBackgroundRole(QPalette::Base);
         QPixmap pm = QPixmap::fromImage(image);
-        ui->label->setPixmap(pm);
-        ui->label->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-        ui->label->setScaledContents(false);
-        ui->label->adjustSize();
+        label->setPixmap(pm);
+        label->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        label->setScaledContents(false);
+        label->adjustSize();
     }
 }
