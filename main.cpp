@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     if(a.arguments().length() > 1) {
-        w.setImage(a.arguments().first();
+        w.setImage(a.arguments().first());
     }
 
     return a.exec();

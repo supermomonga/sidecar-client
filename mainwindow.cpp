@@ -22,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::setImage(QString path)
 {
-    QImage image(QFileInfo(path.absoluteFilePath()));
+    QImage image(QFileInfo(path).absoluteFilePath());
     if(image.isNull()){
         ui->label->setText("そんな画像ないよ");
     }else{
