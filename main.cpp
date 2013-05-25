@@ -5,6 +5,15 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    // I hate mojibake
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    //QTextCodec *codec = QTextCodec::codecForLocale();
+    QTextCodec::setCodecForTr(codec);
+    QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForLocale(codec);
+
+    // Main Window
     MainWindow w;
     w.show();
 
